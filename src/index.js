@@ -1,11 +1,34 @@
 import { connectDB } from "./db/index.js";
-import express from "express";
-import dotenv from 'dotenv'
+import express, { urlencoded } from "express";
+import dotenv from "dotenv";
+import cors from 'cors'
+import cookieParser from "cookie-parser";
+
+dotenv.config({ path: "./.env" });
+const app = express();
 
 
-const app = express()
-dotenv.config({path: './.env'})
+// middleware 
+app.use(express.json({limit: '16kb'}))
+app.use(urlencoded({extended: true, limit: '16kb'}))
+app.use(cors({
+    origin: process.env.PRONTEND_URL
+}))
+app.use(cookieParser())
 
 
-// database connection 
+
+
+const PORT = process.env.PORT || 4000
+
+// database connection
 connectDB()
+  .then(() => {
+    app.listen(PORT, () => {
+      console.log(`Server is on ${PORT}`);
+      console.log("Database Connected !!!");
+    });
+  })
+  .catch((e) => {
+    console.log("Connection Error: ", e);
+  });
