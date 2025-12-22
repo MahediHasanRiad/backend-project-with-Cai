@@ -69,7 +69,7 @@ userSchema.pre("save", async function (next) {
 });
 
 /**
- * create custom hook using "methods"
+ * create custom hook/method using "methods"
  * for compare hash and input password
  */
 userSchema.methods.isPasswordCorrect = async function (password) {
