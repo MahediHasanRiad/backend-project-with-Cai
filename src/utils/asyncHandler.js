@@ -16,7 +16,7 @@ const asyncHandler = (fn) => async (req, res, next) => {
 // another way
 /** 
 const asyncHandler2 = (requestHandler) => {
-  (req, res, next) => {
+  return (req, res, next) => {
     Promise.resolve(requestHandler(req, res, next)).catch((e) => {
       res.status(e.code || 500).json({
         success: false,

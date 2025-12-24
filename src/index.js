@@ -3,6 +3,8 @@ import express, { urlencoded } from "express";
 import dotenv from "dotenv";
 import cors from 'cors'
 import cookieParser from "cookie-parser";
+import { userRouter } from "./router/user.router.js";
+
 
 dotenv.config({ path: "./.env" });
 const app = express();
@@ -15,6 +17,10 @@ app.use(cors({
     origin: process.env.PRONTEND_URL
 }))
 app.use(cookieParser())
+
+
+// routers
+app.use('/api/v1/user', userRouter)
 
 
 
