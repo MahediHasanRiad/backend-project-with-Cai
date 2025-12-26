@@ -10,7 +10,15 @@ cloudinary.config({
 
 const uploadCloudinaryFile = async (localFilePath) => {
   try {
-    if (!localFilePath) return null;
+    if (!localFilePath) {
+      console.log('File path does not exits ')
+      return null
+    };
+
+    if(!fs.existsSync(localFilePath)){
+      console.log("Error: File does not exist at path:", localFilePath);
+      return null;
+    }
 
     // upload file
     const response = await cloudinary.uploader.upload(localFilePath, {
@@ -22,7 +30,7 @@ const uploadCloudinaryFile = async (localFilePath) => {
 
     // delete image from local site
     fs.unlinkSync(localFilePath)
-    
+
     return response;
     
   } catch (error) {

@@ -1,8 +1,8 @@
-import { apiError } from "../utils/apiError.js";
-import { asyncHandler } from "../utils/asyncHandler.js";
-import { User } from "../model/user.model.js";
-import { uploadCloudinaryFile } from "../utils/cloudinary.js";
-import { apiResponse } from "../utils/apiResponse.js";
+import { apiError } from "../../utils/apiError.js";
+import { asyncHandler } from "../../utils/asyncHandler.js";
+import { User } from "../../model/user.model.js";
+import { uploadCloudinaryFile } from "../../utils/cloudinary.js";
+import { apiResponse } from "../../utils/apiResponse.js";
 
 const registerUser = asyncHandler(async (req, res) => {
   /**
@@ -29,10 +29,9 @@ const registerUser = asyncHandler(async (req, res) => {
   const existUser = await User.findOne({
     $or: [{ userName }, { email }],
   });
-  console.log("Exist user: ", existUser);
 
   if (existUser) {
-    return new apiError(400, "User already exist !!!");
+    throw new apiError(400, "User already exist !!!");
   }
 
   // check avater has or not
@@ -40,15 +39,15 @@ const registerUser = asyncHandler(async (req, res) => {
   const coverImageLocalPath = req.files?.coverImage[0]?.path;
 
   if (!avaterLocalPath) {
-    return new apiError(400, "unavailable avater local Path !!!");
+    throw new apiError(400, "unavailable avater local Path !!!");
   }
 
   const avater = await uploadCloudinaryFile(avaterLocalPath);
   const coverImage = await uploadCloudinaryFile(coverImageLocalPath);
 
-  if (!avater) {
-    throw new apiError(400, "avater not found !!!");
-  }
+  // if (!avater) {
+  //   throw new apiError(400, "avater not found !!!");
+  // }
 
   // create user
   const user = await User.create({
@@ -56,7 +55,7 @@ const registerUser = asyncHandler(async (req, res) => {
     fullName,
     email,
     password,
-    avater: avater.url,
+    avater: avater?.url || "",
     coverImage: coverImage?.url || "",
   });
 

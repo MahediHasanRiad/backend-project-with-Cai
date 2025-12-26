@@ -34,14 +34,14 @@ const userSchema = new Schema(
     },
     avater: {
       type: String,
-      required: true,
+      // required: true,
     },
     coverImage: {
       type: String,
     },
     refreshToken: {
       type: String,
-      required: true,
+      // required: true,
     },
     watchHistory: [
       {
@@ -65,7 +65,8 @@ userSchema.pre("save", async function (next) {
   if (!this.isModified("password")) return next();
 
   this.password = await bcrypt.hash(this.password, 10);
-  next();
+  // next();
+
 });
 
 /**
