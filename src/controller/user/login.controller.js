@@ -17,7 +17,7 @@ const loginUser = asyncHandler(async (req, res) => {
 
   const { userName, email, password } = req.body;
 
-  if (!userName || !email || !password) {
+  if (!email || !password) {
     throw new apiError(400, "All field are required !!!");
   }
 

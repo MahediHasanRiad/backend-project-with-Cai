@@ -53,7 +53,7 @@ const userSchema = new Schema(
   { timestamps: true }
 );
 
-/** 
+/**
  * do this just before save
  * password hashing / bcrypt
  */
@@ -62,11 +62,15 @@ userSchema.pre("save", async function (next) {
    * check password modified or not "isModified('check-field-name')"
    * isModified (in build method)
    */
-  if (!this.isModified("password")) return next();
+  try {
+    if (!this.isModified("password")) return next();
 
-  this.password = await bcrypt.hash(this.password, 10);
-  // next();
+    this.password = await bcrypt.hash(this.password, 10);
+    next();
 
+  } catch (error) {
+    console.log(error)
+  }
 });
 
 /**
@@ -79,7 +83,7 @@ userSchema.methods.isPasswordCorrect = async function (password) {
 
 // access token genarate (jwt)
 userSchema.methods.generateAccessToken = function () {
-  jwt.sign(
+  return jwt.sign(
     {
       _id: this._id,
       email: this.email,
@@ -92,7 +96,7 @@ userSchema.methods.generateAccessToken = function () {
 
 // Refresh token generate
 userSchema.methods.generateRefreshToken = function () {
-  jwt.sign(
+  return jwt.sign(
     {
       _id: this._id,
     },

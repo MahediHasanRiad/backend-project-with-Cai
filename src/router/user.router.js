@@ -4,6 +4,7 @@ import { registerUser } from "../controller/user/register.controller.js";
 import { loginUser } from "../controller/user/login.controller.js";
 import { logout } from "../controller/user/logout.controller.js";
 import { jwtVerify } from "../middleware/auth.middleware.js";
+import { refreshAccessToken } from "../controller/user/refreshAccessToken.controller.js";
 
 const userRouter = Router()
 
@@ -20,6 +21,7 @@ userRouter.route('/register').post(upload.fields([
 ]), registerUser) 
 userRouter.route('/login').post( loginUser )
 userRouter.route('/logout').post( jwtVerify, logout )
+userRouter.route('/refresh-token').post(refreshAccessToken)
 
 
 export { userRouter }

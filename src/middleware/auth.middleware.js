@@ -10,7 +10,7 @@ const jwtVerify = async (req, _res, next) => {
 
     if (!token) throw new apiError(400, "Invalid token");
 
-    const decoded = jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
+    const decoded = await jwt.verify(token, process.env.ACCESS_TOKEN_SECRET);
 
     const user = await User.findById(decoded._id);
 
@@ -21,6 +21,7 @@ const jwtVerify = async (req, _res, next) => {
     next();
   } 
   catch (error) {
+    console.log(error)
     throw new apiError(400, error);
   }
 };
