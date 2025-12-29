@@ -1,11 +1,11 @@
-import { User } from "../../model/user.model";
-import { apiError } from "../../utils/apiError";
-import { asyncHandler } from "../../utils/asyncHandler";
-import { generateAccessAndRefereshTokens } from "../../utils/generateToken";
-import { apiResponse } from "../../utils/apiResponse";
+import { User } from "../../model/user.model.js";
+import { apiError } from "../../utils/apiError.js";
+import { asyncHandler } from "../../utils/asyncHandler.js";
+import { generateAccessAndRefereshTokens } from "../../utils/generateToken.js";
+import { apiResponse } from "../../utils/apiResponse.js";
 
 const loginUser = asyncHandler(async (req, res) => {
-    
+
   /**
    * get { userName, email, password }
    * verify email and password

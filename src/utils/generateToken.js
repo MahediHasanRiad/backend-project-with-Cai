@@ -1,4 +1,4 @@
-import { User } from "../model/user.model"
+import { User } from "../model/user.model.js"
 
 const generateAccessAndRefereshTokens = async (userId) => {
 
@@ -8,7 +8,7 @@ const generateAccessAndRefereshTokens = async (userId) => {
         const refreshToken = user.generateRefreshToken()
     
         user.refreshToken = refreshToken
-        user.save({validateBeforeSave: false})
+        user.save({ validateBeforeSave: false })
     
         return {
             accessToken,

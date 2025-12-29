@@ -29,7 +29,7 @@ const uploadCloudinaryFile = async (localFilePath) => {
     console.log("File path: ", response.url);
 
     // delete image from local site
-    fs.unlinkSync(localFilePath)
+    // fs.unlinkSync(localFilePath)
 
     return response;
     
