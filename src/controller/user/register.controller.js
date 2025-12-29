@@ -35,8 +35,8 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 
   // check avater has or not
-  const avaterLocalPath = req.files?.avater?.[0]?.path;
-  const coverImageLocalPath = req.files?.coverImage?.[0]?.path;
+  const avaterLocalPath = req.files?.avater[0]?.path;
+  const coverImageLocalPath = req.files?.coverImage[0]?.path;
 
   if (!avaterLocalPath) {
     throw new apiError(400, "unavailable avater local Path !!!");

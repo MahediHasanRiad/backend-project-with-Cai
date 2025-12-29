@@ -5,6 +5,9 @@ import { loginUser } from "../controller/user/login.controller.js";
 import { logout } from "../controller/user/logout.controller.js";
 import { jwtVerify } from "../middleware/auth.middleware.js";
 import { refreshAccessToken } from "../controller/user/refreshAccessToken.controller.js";
+import { changePassword } from "../controller/user/changePassword.controller.js";
+import { getCurrentUser } from "../controller/user/getCurrentUser.controller.js";
+import { updateDetails } from "../controller/user/updateDetails.controller.js";
 
 const userRouter = Router()
 
@@ -22,6 +25,9 @@ userRouter.route('/register').post(upload.fields([
 userRouter.route('/login').post( loginUser )
 userRouter.route('/logout').post( jwtVerify, logout )
 userRouter.route('/refresh-token').post(refreshAccessToken)
+userRouter.route('/change-password').post(jwtVerify, changePassword)
+userRouter.route('/getUser').get(jwtVerify, getCurrentUser)
+userRouter.route('/updateDetails').post(jwtVerify, updateDetails)
 
 
 export { userRouter }
