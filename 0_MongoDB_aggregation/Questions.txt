@@ -1,0 +1,6 @@
+Answer this Question for practice MongoDB Aggregation 
+
+    1 -  how many users are active ?
+    2 -  what is the avarage age of all users ?
+    3 -  list of top 5 most common fruites amoung the user ?
+    4 -  
