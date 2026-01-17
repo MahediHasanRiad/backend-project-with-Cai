@@ -3,4 +3,16 @@ Answer this Question for practice MongoDB Aggregation
     1 -  how many users are active ?
     2 -  what is the avarage age of all users ?
     3 -  list of top 5 most common fruites amoung the user ?
-    4 -  
+    4 -  find the total number of Male and Female ?
+    5 -  which country has the highest number of Register User ?
+    6 -  list all unique eye colors present in the collections ?
+    7 -  what is the avarage number of tags per user ?
+    8 -  how many user have 'enim' as one of there tags ?
+    9 -  what are the ( name and age ) of a users who are inActive and have 'velit' as a tag ?
+    10 - how many users have a phone number starting with '+1 (940)' ?
+    11 - who has registerd most recently ?
+    12 - categorized user by there favourit fruite ?
+    13 - how many user have 'ad' as there 2nd tag in there list of tags ?
+    14 - find user who have both 'enim' and 'ad' as there tags ?
+    15 - list all the company located in the USA with their corresponding user count
+    16 - 
